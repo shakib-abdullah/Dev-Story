@@ -1,5 +1,6 @@
 'use client';
 
+
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
@@ -28,6 +29,7 @@ const Banner = () => {
             
             <button  onClick={handlesharestory} className="btn btn-dash btn-secondary">Share Story</button>
             <br />
+           
         </div>
     );
 };
