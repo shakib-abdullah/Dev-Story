@@ -1,6 +1,8 @@
 'use client'
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState, useRef, useEffect } from 'react';
+
 
 export const DeveloperCard = ({ developer }) => {
 
@@ -9,7 +11,7 @@ export const DeveloperCard = ({ developer }) => {
     const textRef = useRef(null);
 
     useEffect(() => {
-        console.log(textRef);
+        // console.log(textRef);
         const el = textRef.current;
         if(el){
             setIsOverflowing(el.scrollHeight > el.clientHeight);
@@ -45,14 +47,18 @@ export const DeveloperCard = ({ developer }) => {
         <div className="mb-4">
           <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Skills</h4>
           <div className="flex flex-wrap gap-1.5">
-            {developer.skills.map((skill, index) => (
+            {/* {developer.skills.map((skill, index) => (
+                console.log("index is ", index ),
               <span 
                 key={index}
                 className="bg-indigo-50 text-indigo-700 text-xs px-2.5 py-1 rounded-md font-medium"
               >
                 {skill}
               </span>
-            ))}
+            ))} */}
+            <span  className="bg-indigo-50 text-indigo-700 text-xs px-2.5 py-1 rounded-md font-medium">
+                {developer.skills[0]}
+            </span>
           </div>
         </div>
 
@@ -68,12 +74,17 @@ export const DeveloperCard = ({ developer }) => {
       </div>
 
       {/* Read More / Read Less Button */}
-      <button 
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 self-start focus:outline-none transition-colors mt-2"
-      >
-        {isExpanded ? 'Show Less ▲' : 'See more ▼'}
-      </button>
+        <div className='flex justify-between mx-[40px]'>
+            <button 
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 self-start focus:outline-none transition-colors mt-2"
+            >
+                {isExpanded ? 'Show Less ▲' : 'See more ▼'}
+            </button>
+            <Link href={`/stories/${developer.id}`} className="btn btn-outline btn-warning">
+              Details
+            </Link>
+        </div>
     </div>
   );
 };
